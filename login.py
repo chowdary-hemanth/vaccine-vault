@@ -7,33 +7,33 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 app = Flask(__name__)
 app.secret_key = 'HEMUCHOMU'
 
-conn = sqlite3.connect('user_credentials.db')
+conn = sqlite3.connect('user_credentials.db',check_same_thread=False)
 cursor = conn.cursor()
-
-
+ 
 @app.route('/')
 def home():
-    return render_template('FINAL.html')
+    return render_template('index.html')
+
+
 
 
 @app.route('/signup', methods=['POST'])
 def Signup():
     print(request.form,"sad")
-    username = request.form['signup-username']
-    password = request.form['signup-password']
+    username = request.form.get('signup-username')
+    password = request.form.get('signup-password')
     role = request.form['signup-role']
     if not username or not password or not role:
         flash('Please fill in all fields.')
         return redirect(url_for('home'))
     create_table(role)
-    insert_user(role,username,password)
-
+    insert_user(role,username,password)     
     flash('Signup successful! Please log in.')
     return redirect(url_for('home'))
     
 
 
-"""@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST'])
 def login():
     u = request.form['username']
     p = request.form['password']
@@ -49,7 +49,7 @@ def login():
         return redirect(url_for('dashboard'))
     else:
         flash('Invalid username, password, or role.')
-        return redirect(url_for('home'))"""
+        return redirect(url_for('home'))
     
 @app.route('/dashboard')
 def dashboard():
@@ -128,25 +128,6 @@ def check_unique_id_exists(unique_id,role):
 def get_role():
     role = (input("Enter Role : ")).strip()
     return role
-    
-
-"""def main():
-    u=input("Enter username : ")
-    p=input("Enter password : ")
-    role=get_role()"""
-    
-
-"""def main():
-    print_all_users()"""
-"""def main():
-    while True:
-        u = input("Username : ")
-        p = input("Password : ")
-        if check_user(u,p):
-            print("Login Successfull")
-        else :
-            print("Invalid username or password")"""
-
 
 if __name__ == '__main__':
     app.run(debug=True)
