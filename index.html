@@ -5,7 +5,7 @@
     <title>Vaccine Vault</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: monospace  ;
             margin: 0;
             padding: 0;
             background-color: #f4f4f9;
@@ -14,23 +14,24 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #4CAF50;
-            color: white;
+            background-color: white;
+            color:black;
             padding: 15px 20px;
         }
         header h1 {
             margin: 0;
         }
         .logout-btn {
-            background-color: #f44336;
+            background-color:gray;
             border: none;
             padding: 10px 20px;
             border-radius: 4px;
-            color: white;
+            color: black;
             cursor: pointer;
         }
         .logout-btn:hover {
-            background-color: #e53935;
+            background-color:black;
+            color: white;
         }
         .container {
             max-width: 800px;
@@ -69,15 +70,16 @@
         }
 
         .btn {
-            background-color: #4CAF50;
-            color: white;
+            background-color: gray;
+            color: black;
             border: none;
             padding: 10px 20px;
             border-radius: 4px;
             cursor: pointer;
         }
         .btn:hover {
-            background-color: #45a049;
+            background-color:black;
+            color: white;
         }
         .dashboard {
             display: flex;
@@ -104,13 +106,202 @@
             padding: 10px;
             text-align: left;
         }
+
+
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+}
+#modeToggle {
+
+    background-color: #f44336;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;;
+}
+#modeToggle:hover {
+    background-color: #f44336db;
+}
+body.dark-mode {
+    background-color: #222222;
+    color: #e0e0e0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    transition: background-color 0.3s;
+}
+
+body.dark-mode header {
+    background-color: #333333;
+}
+
+.logout-btn {
+    background-color: #f44336;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #e53935;
+}
+
+body.dark-mode .logout-btn {
+    background-color: #e53935; /* Slightly lighter for contrast in dark mode */
+}
+
+body.dark-mode .logout-btn:hover {
+    background-color: #f44336; /* Original red for hover */
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+body.dark-mode .container {
+    background: #303030;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    color: #333;
+    transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode .form-group input, 
+body.dark-mode .form-group select, 
+body.dark-mode .form-group textarea {
+    border: 1px solid #555;
+    background-color: #444;
+    color: #e0e0e0;
+}
+
+#signup-section {
+    padding: 20px;
+}
+
+#signup-section .form-group {
+    margin: 10px auto;
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+body.dark-mode .btn {
+    background-color: #45a049;
+}
+
+body.dark-mode .btn:hover {
+    background-color: #4CAF50;
+}
+
+.dashboard {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.dashboard button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+body.dark-mode .dashboard button {
+    background-color: #45a049;
+}
+
+.hidden {
+    display: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+    transition: border-color 0.3s;
+}
+
+body.dark-mode table, 
+body.dark-mode th, 
+body.dark-mode td {
+    border: 1px solid #444;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+
+
+
     </style>
 </head>
 <body>
-    <header>
+    <header id="head">
         <h1>Vaccine Vault</h1>
         <button class="logout-btn" onclick="logout()">Logout</button>
     </header>
+    
+    
+    <button id="mode-toggle" class="btn" onclick="toggleMode()">Switch to Dark Mode</button>
 
     
 
@@ -137,6 +328,10 @@
         </div>
         <button class="btn" onclick="signup()">Sign Up</button>
         <button class="btn" onclick="switchToLogin()">Back to Login</button>
+    
+        <button class="btn back-btn" onclick="goToDashboard()">Back to Dashboard</button>
+
+    
     </div>
         <!-- Login Section -->
         <div id="login-section">
@@ -184,7 +379,10 @@
         <div id="profile-section" class="hidden">
             <h2>Profile</h2>
             <p><strong>Username:</strong> <span id="profile-username"></span></p>
-            <p><strong>Role:</strong> <span id="profile-role"></span></p>
+           
+          <p><strong>Role:</strong> <span id="profile-role"></span></p>
+          <button class="btn back-btn" onclick="goToDashboard()">Back to Dashboard</button>
+        
         </div>
 
         <!-- Vaccine History Section -->
@@ -201,6 +399,8 @@
                 </thead>
                 <tbody id="vaccine-history-table">
                 </tbody>
+                <button class="btn back-btn" onclick="goToDashboard()">Back to Dashboard</button>
+
             </table>
         </div>
 
@@ -258,6 +458,8 @@
                     </tr>
                 </tbody>
             </table>
+            <button class="btn back-btn" onclick="goToDashboard()">Back to Dashboard</button>
+
         </div>
 
         <!-- Update Vaccine Section -->
@@ -309,6 +511,39 @@
 
     let clientUniqueId = '';
 
+   // Function to toggle dark mode
+function toggleMode() 
+{
+    const body = document.body; // Select the body element
+    const isDarkMode = body.classList.contains('dark-mode');
+    // Check if dark mode is already applied
+    if (body.classList.contains('dark-mode')) {
+        // Switch to light mode
+        body.classList.remove('dark-mode');
+        document.getElementById('mode-toggle').innerText = 'Switch to Dark Mode';
+        localStorage.setItem('theme', 'light');
+    
+    } else {
+        // Switch to dark mode
+        body.classList.add('dark-mode');
+        document.getElementById('mode-toggle').innerText = 'Switch to Light Mode';
+        localStorage.setItem('theme', 'dark'); }
+
+
+        window.onload = () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        document.getElementById('mode-toggle').innerText = 'Switch to Light Mode';
+    }
+
+
+
+
+    }
+};
+   
+   
     function login() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -320,11 +555,11 @@
     }
 
     // Check if user exists and credentials match
-    const user = users.find(user => user.username === username && user.password === password && user.role === role);
-    if (!user) {
-        alert('Incorrect username, password, or role. Please try again.');
-        return;
-    }
+    // const user = users.find(user => user.username === username && user.password === password && user.role === role);
+    // if (!user) {
+    //     alert('Incorrect username, password, or role. Please try again.');
+    //     return;
+    // }
 
     // Log in the user
     userData.username = username;
@@ -363,7 +598,7 @@
         <ul id="doctor-list">
             ${users
                 .filter(user => user.role === 'doctor')
-                .map(doctor => `<li>${doctor.username}</li>`)
+                .map(doctor => <li>${doctor.username}</li>)
                 .join('')}
         </ul>
     `;
@@ -414,7 +649,7 @@
         }
 
         clientUniqueId = id;
-        alert(`Accessing data for Client ID: ${clientUniqueId}`);
+        alert(Accessing data for Client ID: ${clientUniqueId});
 
         document.getElementById('client-id-section').classList.add('hidden');
         document.getElementById('main-dashboard').classList.remove('hidden');
@@ -434,7 +669,7 @@
         // document.getElementById('doctor-edits-section').classList.add('hidden');
         // document.getElementById('schedule-section').classList.add('hidden');
         resetSections();
-        document.getElementById(`${section}-section`).classList.remove('hidden');
+        document.getElementById(${section}-section).classList.remove('hidden');
     }
 
     function logout() {
@@ -455,6 +690,10 @@
     document.getElementById('update-vaccine-section').classList.add('hidden');
     document.getElementById('doctor-edits-section').classList.add('hidden');
     document.getElementById('schedule-section').classList.add('hidden');
+    document.querySelectorAll('.section').forEach(section => {
+        section.classList.add('hidden');
+    });
+
 }
 
     function updateVaccine() {
@@ -479,6 +718,13 @@
         row.insertCell(3).textContent = date;
 
         alert('Vaccine update successful!');
+        document.getElementById('vaccine-name').value=' ';
+        document.getElementById('vaccine-type').value=' ';
+        document.getElementById('vaccine-dose').value=' ';
+        document.getElementById('vaccine-date').value=' ';
+        resetSections();
+        document.getElementById('main-dashboard').classList.remove('hidden');
+
     }
 
     function goBackToClientSelection() {
@@ -499,8 +745,32 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('login-section').addEventListener('submit', disableScheduleCheckboxesForClient);
 });
 
-   
-   
+
+function goToDashboard() {
+    // First, hide all sections
+    resetSections();
+
+    // Then, show the main dashboard
+    const dashboardSection = document.getElementById('main-dashboard');
+    if (dashboardSection) {
+        dashboardSection.classList.remove('hidden');
+    } else {
+        console.error("Dashboard section not found");
+    }
+
+    // If the user is a doctor, show the 'Client ID' section
+    if (userData.role === 'doctor') {
+        const clientIdSection = document.getElementById('client-id-section');
+        if (clientIdSection) {
+            clientIdSection.classList.remove('hidden');
+        } else {
+            console.error("Client ID section not found");
+        }
+    }
+}
+
+
+
    }
 </script>
 </body>
