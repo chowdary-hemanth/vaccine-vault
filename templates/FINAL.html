@@ -649,7 +649,7 @@ function toggleMode()
         }
 
         clientUniqueId = id;
-        alert(Accessing data for Client ID: ${clientUniqueId});
+        alert('Accessing data for Client ID: ${clientUniqueId}');
 
         document.getElementById('client-id-section').classList.add('hidden');
         document.getElementById('main-dashboard').classList.remove('hidden');
@@ -669,7 +669,7 @@ function toggleMode()
         // document.getElementById('doctor-edits-section').classList.add('hidden');
         // document.getElementById('schedule-section').classList.add('hidden');
         resetSections();
-        document.getElementById(${section}-section).classList.remove('hidden');
+        document.getElementById('${section}-section').classList.remove('hidden');
     }
 
     function logout() {
