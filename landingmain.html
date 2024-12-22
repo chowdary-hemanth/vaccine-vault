@@ -4,19 +4,38 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
+    <!-- <link rel="icon" type="image/png" href="direct1/favicon-modified.png"> -->
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page</title>
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/2746/2746616.png">
     <style>
-        /* Smooth transitions for fade effect */
+/* Overlay for transition effect */
+.transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0;
+  z-index: 1000;
+  pointer-events: none;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.transition-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+
         body {
-            transition: opacity 0.5s ease-in-out;
-            opacity: 1;
-            overflow: hidden;
             margin: 0;
-            font-family: 'Montserrat', sans-serif;
-            letter-spacing: 1px;
-            background: #000;
+            font-family: 'Montserrat:ital',sans-serif;
+            letter-spacing: 2px;
+           background: black;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -25,156 +44,203 @@
             color: #fff;
         }
 
-        body.fade-out {
-            opacity: 0;
-        }
-
         .header {
             position: absolute;
             top: 20px;
             right: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
         }
 
         .content {
             text-align: center;
-            margin-top: 30px;
+            margin-bottom: 50px;
+            margin-top: 50px;
         }
 
         h1 {
-            font-size: 2.5rem;
-            margin: 10% 0 0;
-            font-weight: 500;
-            text-transform: uppercase;
+           margin-top: 100px;
+           margin-bottom: 25px;
+           
+            font-size: 3rem;
+        
         }
 
         p {
-            font-size: 1rem;
-            margin: 10px 0 30px;
-            font-style: italic;
-            opacity: 0.8;
+            font-size: 1.2rem;
+            margin-bottom: 60px;
         }
 
         .login-options {
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             width: 100%;
-            max-width: 900px;
-            margin-top: 20px;
-            padding-top: 20px;
-            flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+            max-width: 800px;
+            margin-top: 50px;
+            padding-top: 40px;
         }
 
         .login-card {
-            background-color: #f0f0f0;
-            border-radius: 15px;
+            background-color: rgb(164, 160, 160);
+            border-radius: 10px;
             padding: 20px;
-            width: 180px;
-            margin: 10px;
+            width: 200px;
             text-align: center;
             color: #333;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
         }
 
         .login-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
         .login-card img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
 
         .login-card button {
-            font-family: 'Montserrat';
-            padding: 8px 15px;
-            font-size: 14px;
-            background-color: #000;
-            color: #e0e0e0;
+            font-family: 'Montserrat:ital';
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: black;
+            color: rgb(82, 80, 80);
             border: none;
-            border-radius: 20px;
+            border-radius: 5px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease;
         }
 
         .login-card button:hover {
-            background-color: #333;
-            color: #fff;
+            background-color: rgb(252, 242, 242);
         }
 
-        #about {
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-            transition: color 0.3s ease;
+        .content-box {
+            text-align: center;
+            margin: auto;
+            padding: 10px;
         }
+        #doc
+        {
+            max-width: 100%;
+            height: auto;
+            height:170px ;
+        width:210px;
+    margin: 0px}
+    #pat
+            {
+            
+            height:170px ;
+        width:210px;
+    margin: 0px}
 
-        #about:hover {
-            color: #ddd;
-        }
+    #hos{
+        
+        height:170px ;
+        width:210px;
+    margin: 0px
+    }
+#about{
+font-family: 'Montserrat:ital';
 
-        /* Ensure login cards are not cut off by taskbar */
-        .login-options {
-            padding-bottom: 60px; /* Adjust based on your taskbar height */
-        }
+text-decoration: none;
+color: white;
 
-        @media (max-width: 600px) {
-            .login-card {
-                width: 80%;
-            }
-        }
+}
+
+#home
+{
+width: 50px;
+height: 50px;
+color: white;
+
+}
+
+.header {
+    display: flex;
+    align-items: center;  /* Centers items vertically */
+    justify-content: flex-start;  /* Align items horizontally to the left */
+}
+
+#home {
+    margin-right: 10px;  /* Optional: adds space between the image and the About Us link */
+}
+
+#about {
+    font-size: 16px;  /* Customize font size as needed */
+    color: #fff;  /* Ensure the color fits your theme */
+    text-decoration: none;  /* Optional: remove underline */
+}
+
+
+
+
     </style>
 </head>
 <body>
     <div class="content">
         <h1>VACCINE VAULT</h1>
-        <p>Protecting Health, Preserving Immunity</p>
+        <p>Protecting Health, Preserving Immunity.</p>
     </div>
 
     <div class="header">
+        <!-- <a href="landing.html"> <img id="home" src="xo.png" alt="Home"> </a> -->
         <a id="about" href="aboutmain.html">About Us</a>
     </div>
     
     <div class="login-options">
-        <div class="login-card">
-            <img src="https://www.pngrepo.com/download/284235/patient.png" alt="Patient">
-            <h3>Patient</h3>
-            <button onclick="navigateWithRole('patient')">Login</button>
-        </div>
-        <div class="login-card">
-            <img src="https://www.nicepng.com/png/full/867-8678512_doctor-icon-physician.png" alt="Doctor">
-            <h3>Doctor</h3>
-            <button onclick="navigateWithRole('doctor')">Login</button>
-        </div>
-        <div class="login-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/9767/9767718.png" alt="Hospital">
-            <h3>Hospital</h3>
-            <button onclick="navigateWithRole('hospital')">Login</button>
-        </div>
+    <div class="login-card">
+        <img src="patient.png" id="pat" alt="Patient">
+        <h3>Patient</h3>
+        <button onclick="navigateWithRole('patient')">Login</button>
     </div>
+    <div class="login-card">
+        <img src="tradoc.png" id="doc" alt="Doctor">
+        <h3>Doctor</h3>
+        <button onclick="navigateWithRole('doctor')">Login</button>
+    </div>
+    <div class="login-card">
+        <img src="hos.png" id="hos" alt="Hospital">
+        <h3>Hospital</h3>
+        <button onclick="navigateWithRole('hospital')">Login</button>
+    </div>
+</div>
 
+    
     <script>
-        document.getElementById('about').addEventListener('click', function(event) {
-            event.preventDefault();
-            document.body.classList.add('fade-out');
-            setTimeout(function() {
-                window.location.href = 'aboutmain.html';
-            }, 500);
-        });
+const overlay = document.createElement('div');
+overlay.className = 'transition-overlay';
+document.body.appendChild(overlay);
 
-        function navigateWithRole(role) {
-            document.body.classList.add('fade-out');
-            setTimeout(function () {
-                window.location.href = `ultimatefinal.html?role=${role}`;
-            }, 500);
-        }
+document.querySelectorAll('a[data-transition]').forEach(link => {
+  link.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent immediate navigation
+
+    // Activate the overlay
+    overlay.classList.add('active');
+
+    // Navigate to the target page after the transition
+    setTimeout(() => {
+      window.location.href = link.href;
+    }, 800); // Match the CSS transition duration (0.8s)
+  });
+});
+// function navigateWithRole(role) {
+//     window.location.href = `new.html?role=${role}`;
+// }
+function navigateWithRole(role) {
+    document.body.classList.add('fade-out');
+    setTimeout(function () {
+        window.location.href = `new3.html?role=${role}`;
+    }, 500); // This matches the transition time
+}
+
+
+    
+
+
+     
     </script>
 </body>
 </html>
