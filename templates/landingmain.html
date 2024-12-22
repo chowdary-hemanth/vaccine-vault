@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <style>
+/* Ensure smooth page transition */
+body {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+}
+
+body.fade-out {
+    opacity: 0;
+}
+
+
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat:ital',sans-serif;
+            letter-spacing: 2px;
+           background: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        .header {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .content {
+            text-align: center;
+            margin-bottom: 50px;
+            margin-top: 50px;
+        }
+
+        h1 {
+           margin-top: 100px;
+           margin-bottom: 25px;
+           
+            font-size: 3rem;
+        
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 60px;
+        }
+
+        .login-options {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 50px;
+            padding-top: 40px;
+        }
+
+        .login-card {
+            background-color: rgb(164, 160, 160);
+            border-radius: 10px;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .login-card:hover {
+            transform: scale(1.05);
+        }
+
+        .login-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .login-card button {
+            font-family: 'Montserrat:ital';
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: black;
+            color: rgb(82, 80, 80);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-card button:hover {
+            background-color: rgb(252, 242, 242);
+        }
+
+        .content-box {
+            text-align: center;
+            margin: auto;
+            padding: 10px;
+        }
+        #doc
+        {
+            max-width: 100%;
+            height: auto;
+            height:170px ;
+        width:210px;
+    margin: 0px}
+    #pat
+            {
+            
+            height:170px ;
+        width:210px;
+    margin: 0px}
+
+    #hos{
+        
+        height:170px ;
+        width:210px;
+    margin: 0px
+    }
+#about{
+font-family: 'Montserrat:ital';
+
+text-decoration: none;
+color: white;
+
+}
+
+#home
+{
+width: 50px;
+height: 50px;
+color: white;
+
+}
+
+.header {
+    display: flex;
+    align-items: center;  /* Centers items vertically */
+    justify-content: flex-start;  /* Align items horizontally to the left */
+}
+
+#home {
+    margin-right: 10px;  /* Optional: adds space between the image and the About Us link */
+}
+
+#about {
+    font-size: 16px;  /* Customize font size as needed */
+    color: #fff;  /* Ensure the color fits your theme */
+    text-decoration: none;  /* Optional: remove underline */
+}
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>VACCINE VAULT</h1>
+        <p>Protecting Health, Preserving Immunity.</p>
+    </div>
+
+    <div class="header">
+        <!-- <a href="landing.html"> <img id="home" src="xo.png" alt="Home"> </a> -->
+        <a id="about" href="about.html">About Us</a>
+    </div>
+    
+    <div class="login-options">
+    <div class="login-card">
+        <img src="{{ url_for('static', filename='patient.png') }}" alt="Sample Image">
+        <h3>Patient</h3>
+        <button onclick="navigateWithRole('patient')">Login</button>
+    </div>
+    <div class="login-card">
+        <img src="{{ url_for('static', filename='tradoc.png') }}" id="doc" alt="Doctor">
+        <h3>Doctor</h3>
+        <button onclick="navigateWithRole('doctor')">Login</button>
+    </div>
+    <div class="login-card">
+        <img src="{{ url_for('static', filename='hos.png') }}" id="hos" alt="Hospital">
+        <h3>Hospital</h3>
+        <button onclick="navigateWithRole('hospital')">Login</button>
+    </div>
+</div>
+
+    
+    <script>
+document.getElementById('about').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default navigation
+        
+        // Add fade-out effect
+        document.body.classList.add('fade-out');
+        
+        // After the fade-out transition ends, navigate
+        setTimeout(function() {
+            window.location.href = 'about.html';
+        }, 500); // Duration should match the transition time in CSS
+    });
+// function navigateWithRole(role) {
+//     window.location.href = `new.html?role=${role}`;
+// }
+function navigateWithRole(role) {
+    document.body.classList.add('fade-out');
+    setTimeout(function () {
+        window.location.href = `new1.html?role=${role}`;
+    }, 500); // This matches the transition time
+}
+
+
+    
+
+
+     
+    </script>
+</body>
+</html>
