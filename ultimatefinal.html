@@ -302,8 +302,6 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 
-
-
 }
 #home
 {width: 50px;
@@ -379,9 +377,6 @@ body.dark-mode #hospital-overview-table th {
     color: #e0e0e0;
 }
 
-
-
-
     </style>
 </head>
 <body>
@@ -395,13 +390,6 @@ body.dark-mode #hospital-overview-table th {
     </div>    
     
     </header>
-
-
-
-   
-    
-
-    
 
     <div class="container">
         <!-- Sign-Up Section -->
@@ -677,12 +665,8 @@ function toggleMode()
         document.getElementById('mode-toggle').innerText = 'Switch to Light Mode';
     }
 
-
-
-
     }
 };
-   
    
     function login() {
         const urlParams = new URLSearchParams(window.location.search);
@@ -811,8 +795,6 @@ const role = urlParams.get('role');
         document.getElementById('update-vaccine-btn').classList.remove('hidden');
     }
 
-
-
     }
 
     function showSection(section) {
@@ -922,8 +904,6 @@ function resetSections() {
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('login-section').addEventListener('submit', disableScheduleCheckboxesForClient);
 });
-
-
 
    }
 
