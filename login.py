@@ -7,12 +7,17 @@ app = Flask(__name__)
 app.secret_key = 'HEMUCHOMU'
 app.run
 role=""
-@app.route('/new1.html')
+
+
+@app.route('/ultimatefinal.html')
 def home():
+    if 'username' not in session:
+        return redirect(url_for('login'))   
     global role
     role = request.args.get('role')
-    print(role,"home")
-    return render_template('new1.html')
+    session['role']=role
+    print(role,"login 1")
+    return render_template('ultimatefinal.html')
 
 @app.route('/landingmain.html')
 def home1():
@@ -30,20 +35,21 @@ def home3():
 
 @app.route('/signup', methods=['POST'])
 def Signup():
-    print("sad",role)
+    print("sad 2",role )
     create_table(role)
     username = request.form.get('signup-username')
     password = request.form.get('signup-password')
     if not username or not password:
         flash('Please fill in all fields.')
-        return redirect(url_for('home'))
+        return redirect(url_for('signup'))
     if check_username_exists(username,role):
         flash('Username already exists.')
         username = request.form.get('signup-username')
-        return redirect(url_for('home'))
+        return redirect(url_for('signup'))
+    print("5",role)
     insert_user(role,username,password)     
     flash('Signup successful! Please log in.')
-    return redirect(url_for('home'))
+    return redirect(url_for('login'))
 
 @app.route("/db", methods=['GET'])
 def db():
@@ -56,50 +62,52 @@ def db():
 
 @app.route('/login', methods=['POST'])
 def login():
-    print(role)
+    print(role,"login 8")
     conn = sqlite3.connect('user_credentials.db')
     cursor = conn.cursor()
     u = request.form['username']
     p = request.form['password']
     cursor = conn.cursor()
-    cursor.execute(f'SELECT password FROM {role} WHERE username = ?', (u))
+    cursor.execute(f'SELECT password FROM {role} WHERE username = ?', (u,))
     stored_password = cursor.fetchone()
     conn.commit()
     conn.close()
 
-    if stored_password and bcrypt.checkpw(p.encode('utf-8'), stored_password[0]):
+    """if stored_password and bcrypt.checkpw(p.encode('utf-8'), stored_password[0]):
         session['username'] = u
         session['role'] = role
         return redirect(url_for('dashboard'))
     else:
         flash('Invalid username, password, or role.')
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))"""
     
-    """if check_user(u,p):
+    if check_user(u,p):
         session['username'] = u
         session['role'] = role
-        return redirect(url_for('dashboard'))
+        print("working")
+        return render_template('ultimatefinal.html')
     else :
+        print("not working")
         flash('Invalid username, password, or role.')
-        return redirect(url_for('home'))"""
+        return redirect(url_for('login'))
     
     
 @app.route('/dashboard')
 def dashboard():
-    if 'username' in session:
-        return f'Welcome {session["username"]} to the dashboard!'
-    return redirect(url_for('home'))
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    return render_template('ultimatefinal.html')
+    
 
 @app.route('/logout')
 def logout():
     session.pop('username', None)
-    session.pop('role', None)
-    return redirect(url_for('home'))
+    return redirect(url_for('login'))
 
 def create_table(role):
     conn = sqlite3.connect('user_credentials.db')
     cursor = conn.cursor()
-    print(role)
+    print(role,"create table 3")
     cursor.execute(f'''CREATE TABLE IF NOT EXISTS {role}(
                      id INTEGER,
                      username TEXT NOT NULL,
@@ -114,11 +122,11 @@ def hash_password(password):
 def insert_user(role,username, password):
     conn = sqlite3.connect('user_credentials.db')
     cursor = conn.cursor()
-
+    print(role,"6")
     hashed_password = hash_password(password)
     cursor.execute(f'''INSERT INTO {role} (id,
                    username, password) VALUES ( ?, ?, ?)''', (unique_id(role),username,hashed_password))
-
+    print(role,"7")
     conn.commit()
     conn.close()
 
@@ -126,7 +134,7 @@ def check_user(username, password):
     conn = sqlite3.connect('user_credentials.db')
     cursor = conn.cursor()
 
-    cursor.execute('''SELECT password FROM users WHERE username = ?''', (username,))
+    cursor.execute(f'''SELECT password FROM {role} WHERE username = ?''', (username,))
     stored_password = cursor.fetchone()
 
     conn.close()
@@ -154,8 +162,8 @@ def check_unique_id_exists(unique_id,role):
 def check_username_exists(username,role):
     conn = sqlite3.connect('user_credentials.db') 
     cursor = conn.cursor()
-    print(role,"checkuser")
-    print(cursor.execute(f'SELECT 1 FROM {role} WHERE username = ?',(username,)))
+    print(role,"checkuser 4 ")
+    cursor.execute(f'SELECT 1 FROM {role} WHERE username = ?',(username,))
     result = cursor.fetchone()
     conn.close()
     return result is not None
