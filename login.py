@@ -11,13 +11,13 @@ role=""
 def home():
     global role
     role = request.args.get('role')
-    print(role)
+    print(role,"home")
     return render_template('new1.html')
 
-
-@app.route('/landing.html')
+@app.route('/landingmain.html')
 def home1():
     return render_template('landingmain.html')
+
 
 @app.route('/')
 def home2():
@@ -30,6 +30,8 @@ def home3():
 
 @app.route('/signup', methods=['POST'])
 def Signup():
+    print("sad",role)
+    create_table(role)
     username = request.form.get('signup-username')
     password = request.form.get('signup-password')
     if not username or not password:
@@ -39,7 +41,6 @@ def Signup():
         flash('Username already exists.')
         username = request.form.get('signup-username')
         return redirect(url_for('home'))
-    create_table(role)
     insert_user(role,username,password)     
     flash('Signup successful! Please log in.')
     return redirect(url_for('home'))
@@ -98,6 +99,7 @@ def logout():
 def create_table(role):
     conn = sqlite3.connect('user_credentials.db')
     cursor = conn.cursor()
+    print(role)
     cursor.execute(f'''CREATE TABLE IF NOT EXISTS {role}(
                      id INTEGER,
                      username TEXT NOT NULL,
@@ -152,7 +154,8 @@ def check_unique_id_exists(unique_id,role):
 def check_username_exists(username,role):
     conn = sqlite3.connect('user_credentials.db') 
     cursor = conn.cursor()
-    cursor.execute(f'SELECT 1 FROM {role} WHERE id = ?',(username,))
+    print(role,"checkuser")
+    print(cursor.execute(f'SELECT 1 FROM {role} WHERE username = ?',(username,)))
     result = cursor.fetchone()
     conn.close()
     return result is not None
