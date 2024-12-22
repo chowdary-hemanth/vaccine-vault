@@ -4,7 +4,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-
+<link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/2746/2746616.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
@@ -65,41 +65,73 @@
             margin: 20px;
         }
 
-        body {
-    transition: opacity 0.5s ease-in-out;
-    opacity: 1;
+        /* Overlay for transition effect */
+.transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0;
+  z-index: 1000;
+  pointer-events: none;
+  transition: opacity 0.8s ease-in-out;
 }
 
-body.fade-out {
-    opacity: 0;
+.transition-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
 }
+
+
+
+
 
     </style>
 </head>
 <body>
     <div class="header">
         <a href="landingmain.html">
-            <img  id="tat" src="https://static.vecteezy.com/system/resources/previews/022/750/436/original/3d-home-icon-free-png.png" alt="Home" />
+            <img  id="tat" src="xo.png" alt="Home" />
         </a>
     </div>
     
 
     <div class="content">
         <h1>About Us</h1>
-        <p>Vaccine Vault is dedicated to preserving immunity and promoting public health. Our platform ensures the safe storage and tracking of vaccines for a healthier future.</p>
+        <p>Despite the critical importance of vaccinations in preventing diseases, there is a widespread issue of missed or delayed vaccine doses due to poor tracking and communication. Patients often lack awareness of their vaccination schedules, while hospitals and doctors struggle to manage and monitor immunization records efficiently.  The problem is further compounded by the lack of a unified system connecting patients, doctors, and hospitals for streamlined vaccine management. Vaccine vault eliminates the need to rely on paper work which is generally used in hospitals as records. This system is a vaccine management platform enabling clients, doctors, and hospitals to track and update vaccination records. This system notifies users of missed vaccines and provides revised schedules, creating a seamless way to manage and monitor vaccination progress.</p>
     </div>
     <script>
-        document.getElementById('tat').addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent default navigation
-    
-            // Add fade-out effect
-            document.body.classList.add('fade-out');
-    
-            // After fade-out completes, navigate to the home page
-            setTimeout(function() {
-                window.location.href = 'landingmain.html';
-            }, 500); // Duration should match the fade-out time in CSS
-        });
+        const overlay = document.createElement('div');
+overlay.className = 'transition-overlay';
+document.body.appendChild(overlay);
+
+document.querySelectorAll('a[data-transition]').forEach(link => {
+  link.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent immediate navigation
+
+    // Activate the overlay
+    overlay.classList.add('active');
+
+    // Navigate to the target page after the transition
+    setTimeout(() => {
+      window.location.href = link.href;
+    }, 800); // Match the CSS transition duration (0.8s)
+  });
+});
+
+
+
+
+
+
+
+
+
     </script>
 </body>
+
+
+
 </html>
