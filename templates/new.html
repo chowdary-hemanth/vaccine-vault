@@ -308,26 +308,27 @@ th, td {
     <div class="container">
         <!-- Sign-Up Section -->
 
-    <div id="signup-section" class="hidden">
-        <h2>Sign Up</h2>
-        <div class="form-group">
-            <label for="signup-username">Username:</label>
-            <input type="text" id="signup-username">
-        </div>
-        <div class="form-group">
-            <label for="signup-password">Password:</label>
-            <input type="password" id="signup-password">
-        </div>
-        <!-- <div class="form-group">
-            <label for="signup-role">Role:</label>
-            <select id="signup-role">
-                <option value="client">Client</option>
-                <option value="doctor">Doctor</option>
-                <option value="hospital">Hospital</option>
-            </select>
-        </div> -->
-        <button class="btn" onclick="signup()">Sign Up</button>
-        <button class="btn" onclick="switchToLogin()">Back to Login</button>
+        <div id="signup-section" class="hidden">
+            <h2>Sign Up</h2>
+            <form action="/signup" method="POST">
+            <div class="form-group">
+                <label for="signup-username">Username:</label>
+                <input type="text" name="signup-username" id="signup-username" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-password">Password:</label>
+                <input type="password" name="signup-password" id="signup-password" required>
+            </div>
+            <!-- <div class="form-group">
+                <label for="signup-role">Role:</label>
+                <select id="signup-role">
+                    <option value="client">Client</option>
+                    <option value="doctor">Doctor</option>
+                    <option value="hospital">Hospital</option>
+                </select>
+            </div> -->
+            <button class="btn" onclick="signup()">Sign Up</button>
+            <button class="btn" onclick="switchToLogin()">Back to Login</button>
     
         <!-- <button class="btn back-btn" onclick="goToDashboard()">Back to Dashboard</button> -->
 
@@ -336,13 +337,14 @@ th, td {
         <!-- Login Section -->
         <div id="login-section">
             <h2>Login</h2>
+            <form action="/login" method="POST">
             <div class="form-group">
                 <label for="username">Username:</label>
-                <input type="text" id="username">
+                <input type="text" name="username" id="username" required>
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" id="password">
+                <input type="password" name="password" id="password" required>
             </div>
             <!-- <div class="form-group">
                 <label for="role">Role:</label>
@@ -354,6 +356,7 @@ th, td {
             </div> -->
             <button class="btn" onclick="login()">Login</button>
             <p>Don't have an account? <button class="btn" onclick="switchToSignup()">Sign Up</button></p>
+        </form>
         </div>
 
     <!-- Dashboard Section -->
@@ -606,10 +609,17 @@ const role = urlParams.get('role');
     `;
     document.getElementById('dashboard-section').appendChild(doctorListSection);
 }
+    
+    function role() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const role = urlParams.get('role');
+
+    }
 
     function signup() {
         const urlParams = new URLSearchParams(window.location.search);
         const role = urlParams.get('role');
+        console.log(role)
     const username = document.getElementById('signup-username').value;
     const password = document.getElementById('signup-password').value;
     //const role = document.getElementById('signup-role').value;
