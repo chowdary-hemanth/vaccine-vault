@@ -6,16 +6,26 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 app = Flask(__name__)
 app.secret_key = 'HEMUCHOMU'
 app.run
- 
-@app.route('/new.html')
+role=""
+@app.route('/new1.html')
 def home():
+    global role
     role = request.args.get('role')
     print(role)
-    return render_template('landing.html',role_value=role)
+    return render_template('new1.html')
+
+
+@app.route('/landing.html')
+def home1():
+    return render_template('landingmain.html')
 
 @app.route('/')
 def home2():
-    return render_template('landing.html')
+    return render_template('landingmain.html')
+
+@app.route('/about.html')
+def home3():
+    return render_template('about.html')
 
 
 @app.route('/signup', methods=['POST'])
