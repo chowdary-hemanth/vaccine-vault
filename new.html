@@ -363,14 +363,15 @@ body.fade-out {
 
     <div id="signup-section" class="hidden">
         <h2>Sign Up</h2>
-        <div class="form-group">
-            <label for="signup-username">Username:</label>
-            <input type="text" id="signup-username">
-        </div>
-        <div class="form-group">
-            <label for="signup-password">Password:</label>
-            <input type="password" id="signup-password">
-        </div>
+        <form action="/signup" method="POST">
+            <div class="form-group">
+                <label for="signup-username">Username:</label>
+                <input type="text" name="signup-username" id="signup-username" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-password">Password:</label>
+                <input type="password" name="signup-password" id="signup-password" required>
+            </div>
         <!-- <div class="form-group">
             <label for="signup-role">Role:</label>
             <select id="signup-role">
@@ -389,14 +390,15 @@ body.fade-out {
         <!-- Login Section -->
         <div id="login-section">
             <h2>Login</h2>
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username">
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password">
-            </div>
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" required>
+                </div>
             <!-- <div class="form-group">
                 <label for="role">Role:</label>
                 <select id="role">
